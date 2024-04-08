@@ -1,0 +1,4 @@
+services:
+  - name: web
+    buildCommand: poetry install && poetry run python manage.py collectstatic --noinput
+    startCommand: poetry run gunicorn project.wsgi:application --bind 0.0.0.0:$PORT
