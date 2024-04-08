@@ -1,7 +1,19 @@
-# Exported from Render on 2024-04-08T16:20:10Z
 services:
   - name: web
     buildCommand: |
       poetry install
       poetry run python manage.py collectstatic --noinput
     startCommand: poetry run gunicorn BillingSystem.wsgi:application --bind 0.0.0.0:$PORT
+
+web:
+  - type: web
+    name: Billing-System-Using-Django-3
+    runtime: python
+    repo: https://github.com/Ramcharan77/Billing-System-Using-Django
+    branch: main
+    plan: free
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: python manage.py runserver
+
+version: "1"
